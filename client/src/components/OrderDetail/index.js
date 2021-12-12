@@ -40,7 +40,7 @@ function classNames(...classes) {
 
 export default function OrderDetail() {
   return (
-    <div className="bg-white">
+    <div className="bg-white bg">
       <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">Order Details</h1>
 

@@ -4,6 +4,9 @@ import OrderDetail from './components/OrderDetail'
 function App() {
   return (
     <>
+        <div className={"text-white font-bo"}>
+
+        </div>
       <Cart />
       <OrderDetail />
     </>
