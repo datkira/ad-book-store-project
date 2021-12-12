@@ -2,6 +2,7 @@ import Cart from './components/Cart'
 import OrderDetail from './components/OrderDetail'
 import { useEffect, useState } from "react";
 import ApiService from "./services";
+import Form from "./components/Form";
 
 function App() {
   const [teachers, setTeachers] = useState([])
@@ -13,8 +14,8 @@ function App() {
   }, [])
   return (
     <>
-      {JSON.stringify(teachers)}
-      <button onClick={() => console.log(teachers)}>Console</button>
+      {/*{JSON.stringify(teachers)}*/}
+      <Form/>
       <Cart />
       <OrderDetail />
     </>
