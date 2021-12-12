@@ -8,6 +8,13 @@ const logger = new Logger("bootstrap");
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  });
+
   try {
     await sql.connect({
       user: process.env.DATABASE_USER,
@@ -31,7 +38,7 @@ async function bootstrap() {
     throw new Error(err);
   }
 
-  await app.listen(3000);
+  await app.listen(5000);
 }
 
 bootstrap();

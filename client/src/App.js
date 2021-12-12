@@ -1,12 +1,20 @@
 import Cart from './components/Cart'
 import OrderDetail from './components/OrderDetail'
+import { useEffect, useState } from "react";
+import ApiService from "./services";
 
 function App() {
+  const [teachers, setTeachers] = useState([])
+  const service = new ApiService()
+  useEffect(() => {
+    service.getAllTeachers().then(data => {
+      setTeachers(data)
+    })
+  }, [])
   return (
     <>
-        <div className={"text-white font-bo"}>
-
-        </div>
+      {JSON.stringify(teachers)}
+      <button onClick={() => console.log(teachers)}>Console</button>
       <Cart />
       <OrderDetail />
     </>
