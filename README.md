@@ -8,11 +8,7 @@ Clone code from the remote repository
 ```
     
 
-Install ad-book-store-project with npm
-
-```bash
-  npm install ad-book-store-project
-```
+Link to the root folder:
 ```bash
   cd ad-book-store-project
 ```
