@@ -1,24 +1,22 @@
-import Cart from './components/Cart'
-import OrderDetail from './components/OrderDetail'
-import { useEffect, useState } from "react";
-import ApiService from "./services";
-import Form from "./components/Form";
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { ViewRoutes } from './routes'
+import Header from './components/Header'
 
 function App() {
-  const [teachers, setTeachers] = useState([])
-  const service = new ApiService()
-  useEffect(() => {
-    service.getAllTeachers().then(data => {
-      setTeachers(data)
-    })
-  }, [])
   return (
-    <>
-      {/*{JSON.stringify(teachers)}*/}
-      <Form/>
-      <Cart />
-      <OrderDetail />
-    </>
+    <Router>
+      <Header />
+      <Switch>
+        {ViewRoutes.map(({ path, exact, component }, key) => {
+          return (
+            <Route key={key} exact={exact} path={path}>
+              {component}
+            </Route>
+          )
+        })}
+      </Switch>
+    </Router>
   )
 }
 
