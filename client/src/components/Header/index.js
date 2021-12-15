@@ -53,10 +53,12 @@ export default function Header() {
                     </button>
 
                     {/* Search */}
-                    <a href="#" className="ml-2 p-2 text-gray-400 hover:text-gray-500">
-                      <span className="sr-only">Search</span>
-                      <SearchIcon className="w-6 h-6" aria-hidden="true" />
-                    </a>
+                    <Link to={"/search"}>
+                      <a className="ml-2 p-2 text-gray-400 hover:text-gray-500">
+                        <span className="sr-only">Search</span>
+                        <SearchIcon className="w-6 h-6" aria-hidden="true" />
+                      </a>
+                    </Link>
                   </div>
 
                   {/* Logo (lg-) */}
@@ -67,15 +69,21 @@ export default function Header() {
                   </a>
 
                   <div className="flex-1 flex items-center justify-end">
-                    <Link to={"/add-book"}>
+                    <Link to={"/queue"}>
                       <a className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
+                        Queue
+                      </a>
+                    </Link>
+                    <Link to={"/add-book"}>
+                      <a className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block lg:ml-8">
                         Add book
                       </a>
                     </Link>
-                    <a href="#"
-                       className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block lg:ml-8">
-                      Search
-                    </a>
+                    <Link to={"/search"}>
+                      <a className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block lg:ml-8">
+                        Search
+                      </a>
+                    </Link>
 
                     <div className="flex items-center lg:ml-8">
                       {/* Help */}
