@@ -7,6 +7,6 @@ const sql = require("mssql");
 export class BillController {
   @Get()
   async GetTotalCostOfBill() {
-    return await sql.query(`EXEC ${StoredProcedureDefine.VIEW_COST_OF_BILL} @@BILL_ID = 1`);
+    return await sql.query(`EXEC ${StoredProcedureDefine.VIEW_COST_OF_BILL} @BILL_ID = 1`);
   }
 }
