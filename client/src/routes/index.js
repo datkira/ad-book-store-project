@@ -39,7 +39,7 @@ const ViewRoutes = [
     component: () => <Cart />
   },
   {
-    path: "/book",
+    path: "/book/:id",
     exact: true,
     component: () => <BookDetail />
   }

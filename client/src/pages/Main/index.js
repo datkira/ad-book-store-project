@@ -3,15 +3,15 @@ import StoreList from "../../components/StoreList";
 import ApiService from "../../services";
 
 const Main = () => {
-  // const [teachers, setTeachers] = useState([]);
-  // const service = new ApiService();
-  // useEffect(() => {
-  //   service.getAllTeachers().then(data => {
-  //     setTeachers(data);
-  //   });
-  // }, []);
+  const [books, setBooks] = useState([]);
+  const service = new ApiService();
+  useEffect(() => {
+    service.getAllBooks().then(data => {
+      setBooks(data.recordset);
+    });
+  }, []);
   return (
-    <StoreList />
+    <StoreList books={books}/>
   );
 };
 
