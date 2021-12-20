@@ -2,7 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 import ApiService from "../../services";
 
-const Form = () => {
+const AddBookForm = () => {
   const service = new ApiService();
 
   return (
@@ -157,4 +157,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default AddBookForm;

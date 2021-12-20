@@ -1,17 +1,24 @@
 import { Popover } from "@headlessui/react";
 import { MenuIcon, QuestionMarkCircleIcon, SearchIcon, ShoppingBagIcon } from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
-
-const navigation = {
-  pages: [
-    { name: "Comic", href: "#" },
-    { name: "Roman", href: "#" },
-    { name: "Horror", href: "#" },
-    { name: "Action and Adventure", href: "#" }
-  ]
-};
+import { Link, useHistory, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import ApiService from "../../services";
 
 export default function Header() {
+  const [categories, setCategories] = useState([])
+  const service = new ApiService()
+  const history = useHistory()
+
+  useEffect(() => {
+    service.getAllCategories().then(data => {
+      if (data.length > 0) {
+        console.log(data)
+        setCategories(data)
+      } else {
+        history.push('/')
+      }
+    })
+  }, [])
   return (
     <div className="bg-white">
       <header className="relative">
@@ -32,14 +39,12 @@ export default function Header() {
                     {/* Flyout menus */}
                     <Popover.Group className="px-4 bottom-0 inset-x-0">
                       <div className="h-full flex justify-center space-x-8">
-                        {navigation.pages.map(page => (
-                          <a
-                            key={page.name}
-                            href={page.href}
-                            className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                        {categories.map(category => (
+                          <Link to={"/category/" + category.CATEGORY_ID}
+                                className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                           >
-                            {page.name}
-                          </a>
+                            {category.TITLE}
+                          </Link>
                         ))}
                       </div>
                     </Popover.Group>

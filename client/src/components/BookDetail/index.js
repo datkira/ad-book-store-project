@@ -37,7 +37,7 @@ export default function BookDetail() {
 
           {/* Product info */}
           <div className='mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0'>
-            <h1 className='text-3xl font-extrabold tracking-tight text-gray-900'>{bookDetail.B_NAME}</h1>
+            <h1 className='text-3xl font-extrabold tracking-tight text-blue-800'>{bookDetail.B_NAME}</h1>
 
             <div className='mt-3'>
               <h2 className='sr-only'>Product information</h2>
@@ -52,7 +52,13 @@ export default function BookDetail() {
 
             <form className='mt-6'>
               <div className={'mb-2'}>
-                <label className='block text-base font-medium text-gray-700'>Total Sold Book: {bookDetail.TOTAL_SOLD_BOOK}</label>
+                <label className='block text-base font-medium text-gray-900'>Category Name: <span className={"text-gray-500"}>{bookDetail.CATEGORY_NAME}</span></label>
+              </div>
+              <div className={'mb-2'}>
+                <label className='block text-base font-medium text-gray-900'>Author: <span className={"text-gray-500"}>{bookDetail.AUTHOR_NAME}</span></label>
+              </div>
+              <div className={'mb-2'}>
+                <label className='block text-base font-medium text-gray-900'>Total Sold Book: <span className={"text-gray-500"}>{bookDetail.TOTAL_SOLD_BOOK}</span></label>
               </div>
               <div>
                 <label className='block text-base font-medium text-gray-700'>Quantity</label>
