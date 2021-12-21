@@ -21,8 +21,13 @@ export class BookController {
     return await sql.query(`EXEC ${StoredProcedureDefine.VIEW_BOOK_BY_ID} @book_id = ${id}`);
   }
 
+  @Get("/search_book/:keyword")
+  async searchBook(@Param("keyword") keyword: string) {
+    return await sql.query(`EXEC ${StoredProcedureDefine.SEARCH_BOOK_BY_TITLE} @SEARCH_STRING = ${keyword}`);
+  }
+
   @Post()
-  async createBook(@Body () book: any) {
+  async createBook(@Body() book: any) {
     console.log(book.title, book.author);
     return await sql.query(`EXEC ${StoredProcedureDefine.CREATE_BOOK} @TITLE = ${book.title}, @AUTHOR_ID = ${book.author}`);
   }
