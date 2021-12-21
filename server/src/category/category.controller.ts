@@ -6,7 +6,7 @@ const sql = require("mssql");
 @Controller('categories')
 export class CategoryController {
   @Get()
-  async getAllCategories() {asdasd
+  async getAllCategories() {
     const result = await sql.query("select * from CATEGORY");
     return result.recordset;
   }
