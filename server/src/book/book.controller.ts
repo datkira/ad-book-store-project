@@ -11,6 +11,21 @@ export class BookController {
     return result.recordset;
   }
 
+  @Get('getAllDependencies')
+  async getAllAuthorsAndWarehouseAndPublisherAndCategories() {
+    const authors = await sql.query("select * from BOOK");
+    const categories = await sql.query("select * from CATEGORY");
+    const ware_houses = await sql.query("select * from WAREHOUSE");
+    const publishers = await sql.query("select * from PUBLISHER");
+
+    return {
+      authors: authors.recordset,
+      categories: categories.recordset,
+      ware_houses: ware_houses.recordset,
+      publishers: publishers.recordset
+    };
+  }
+
   @Get("/top")
   async getTopBooks() {
     return await sql.query(`EXEC ${StoredProcedureDefine.VIEW_TOP_20_BOOK}`);

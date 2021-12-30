@@ -7,10 +7,11 @@ import { BookModule } from './book/book.module';
 import { BillController } from './bill/bill.controller';
 import { BillModule } from './bill/bill.module';
 import { CategoryController } from './category/category.controller';
+import { CartController } from './cart/cart.controller';
 
 @Module({
   imports: [ConfigModule.forRoot(), BookModule, BillModule],
-  controllers: [AppController, BillController, CategoryController],
+  controllers: [AppController, BillController, CategoryController, CartController],
   providers: [AppService, BookService],
 })
 export class AppModule {}

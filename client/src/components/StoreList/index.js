@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { numberWithCommas } from "../../helper";
 
 export default function StoreList({ books }) {
   return (
@@ -23,7 +24,7 @@ export default function StoreList({ books }) {
               </h3>
               <p className="mt-1 text-sm text-gray-500">{book.CATEGORY_NAME}</p>
             </div>
-            <p className="text-sm font-medium text-gray-900">{book.B_PRICE}</p>
+            <p className="text-sm font-medium text-gray-900">{numberWithCommas(parseInt(book.PRICE))} VND</p>
           </div>
         </div>
       ))}
