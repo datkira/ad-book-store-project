@@ -3,6 +3,7 @@ import ApiService from "../../services";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
 import { numberWithCommas } from "../../helper";
+import { toast } from 'react-toastify'
 
 const products = [
   {
@@ -64,7 +65,21 @@ export default function Queue() {
       if (data.status === 200) {
         console.log("bills accept", data);
         // filter id
-        const newBills = bills.filter(bill => bill.id !== id);
+        const newBills = bills.filter(bill => bill.BILL_ID !== id);
+        toast.success("Accepted successfully");
+        setBills(newBills);
+      } else {
+        history.push("/");
+      }
+    });
+  }
+  const deleteBill = (id) => {
+    service.deleteBill(id).then(data => {
+      if (data.status === 200) {
+        console.log("bills accept", data);
+        // filter id
+        const newBills = bills.filter(bill => bill.BILL_ID !== id);
+        toast.success("Denied successfully");
         setBills(newBills);
       } else {
         history.push("/");
@@ -139,10 +154,11 @@ export default function Queue() {
                     </div>
 
                     <div className={"mt-5 float-right"}>
-                      <button className={"bg-blue-500 text-white px-3 py-2 rounded"}>
+                      <button className={"bg-blue-500 text-white px-3 py-2 rounded"} onClick={() => acceptBill(bill.BILL_ID)}>
                         Accept
                       </button>
-                      <button className={"ml-4 bg-red-500 text-white px-3 py-2 rounded"}>
+                      <button className={"ml-4 bg-red-500 text-white px-3 py-2 rounded"}
+                      onClick={() => deleteBill(bill.BILL_ID)}>
                         Deny
                       </button>
                     </div>

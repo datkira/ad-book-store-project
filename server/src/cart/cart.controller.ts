@@ -26,6 +26,17 @@ export class CartController {
     };
   }
 
+  @Delete()
+  async deleteAll() {
+    const result = await sql.query(`delete from CART_DETAIL`);
+    return {
+      status: 200,
+      result: {
+        result
+      }
+    };
+  }
+
   @Post()
   async addToCart(@Body() body: any) {
     console.log(body);

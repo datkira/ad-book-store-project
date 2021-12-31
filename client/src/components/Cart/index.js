@@ -29,9 +29,10 @@ export default function Cart() {
   };
 
   const createBill = () => {
-    service.createBill(books).then(data => {
+    service.createBill(books).then(async data => {
       console.log("data", data);
       if (data.status === 200) {
+        await service.deleteAllCart()
         history.push("/queue");
         toast.success("Bill created successfully");
       }
@@ -90,6 +91,7 @@ export default function Cart() {
                             id={`quantity-${bookIdx}`}
                             name={`quantity-${bookIdx}`}
                             value={book.Quantity ? book.Quantity : 0}
+                            disabled={true}
                             className="max-w-full rounded-md border border-gray-300 py-1.5 text-base leading-5 font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           >
                             <option value={book.Quantity}>{book.Quantity}</option>

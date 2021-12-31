@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { StoredProcedureDefine } from "../stored-procedure-define";
 
 const sql = require("mssql");
@@ -14,14 +14,24 @@ export class BillController {
     };
   }
 
-  @Put(':id')
-  async acceptBill(@Param('id') id: number) {
-    const result = await sql.query(`update BILL set B_STATUS = 1' where BILL_ID = ${id}`);
+  @Put("/enable/:id")
+  async enableBill(@Param("id") id: number) {
+    const result = await sql.query(`UPDATE BILL SET B_STATUS = 1 WHERE BILL_ID = ${id}`);
     return {
       status: 200,
-      result: result.recordset
+      result: result
     };
   }
+
+  @Delete(":id")
+  async deleteBill(@Param("id") id: number) {
+    const result = await sql.query(`EXEC ${StoredProcedureDefine.DELETE_BILL_DETAIL_AND_BILL} @BILL_ID = ${id}`);
+    return {
+      status: 200,
+      result: result
+    };
+  }
+
   @Post()
   async addToBill(@Body() body) {
     const createdBill = await sql.query(`EXEC ${StoredProcedureDefine.CREATE_BILL} @EMPLOYEEE_ID = 1, @CUSTOMER_ID = 1`);
