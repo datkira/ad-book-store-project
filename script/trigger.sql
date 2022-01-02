@@ -1,7 +1,6 @@
 ﻿--Trigger
 -- Số lượng đơn hàng
 
-
 create or alter trigger TotalBills on Bill
 for insert,delete 
 as
@@ -19,9 +18,6 @@ go
 
 
 -- Số tiền đã mua
-
-
-
 create or alter trigger TotalMoney on Bill_Detail
 for insert,delete
 as
@@ -31,16 +27,9 @@ where o.CUSTOMER_ID=Customer.CUSTOMER_ID
 group by o.CUSTOMER_ID)
 where Customer_ID  in ( select Customer_ID from Inserted union select Customer_ID from Deleted )
 
-
---Giá
-
-
-
--- Tổng tiền 
-
-
 go 
 
+-- Tổng tiền hóa đơn
 create or alter trigger Bill_ToTal_Cost on Bill_Detail
 for insert,delete 
 as 
@@ -58,6 +47,7 @@ end
 
 go 
 
+--tổng tiền đơn nhập
 create or alter trigger Import_ToTal_Cost on Imported_Bill_Detail
 for insert,delete 
 as 
@@ -76,6 +66,7 @@ end
 
 go
 
+--tổng tiền đỡn xuất
 create or alter trigger Export_ToTal_Cost on Exported_Bill_Detail
 for insert,delete 
 as 
@@ -92,6 +83,7 @@ WHERE dbo.Exported_bill.Exported_id= f.Exported_bill_id and Exported_bill.Export
 end
 
 go
+--tổng số đã bán
 create or alter trigger Total_Sold_Book on Bill_Detail
 for insert,delete
 as
